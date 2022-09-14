@@ -19,7 +19,7 @@ const UsuarioSchema = Schema({
         type: String,
     },
     rol: {
-        type: String,
+        type: String, 
         required: true,
         emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
@@ -35,7 +35,8 @@ const UsuarioSchema = Schema({
 
 //Sobre escritura de método para evitar visualizar __v y password
 UsuarioSchema.methods.toJSON = function () {
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario} = this.toObject();
+    usuario.uid = _id; //Método para cambiar nombre a la variable
     return usuario;
 }
 
